@@ -1,0 +1,75 @@
+def display_welcome():
+    
+    print("   Welcome to Simple Calculator     ")
+    
+
+def get_number(prompt):
+    while True:
+        try:
+            number = float(input(prompt))
+            return number
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+def get_operation():
+    print("\nSelect an operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+    
+    while True:
+        choice = input("Enter choice (1/2/3/4): ")
+        if choice in ['1', '2', '3', '4']:
+            return choice
+        else:
+            print("Invalid choice. Please enter 1, 2, 3, or 4.")
+
+def perform_calculation(num1, num2, operation):
+    if operation == '1':
+        result = num1 + num2
+        print(f"\nResult: {num1} + {num2} = {result}")
+    elif operation == '2':
+        result = num1 - num2
+        print(f"\nResult: {num1} - {num2} = {result}")
+    elif operation == '3':
+        result = num1 * num2
+        print(f"\nResult: {num1} * {num2} = {result}")
+    elif operation == '4':
+        if num2 == 0:
+            print("\nError: Division by zero is not allowed.")
+        else:
+            result = num1 / num2
+            print(f"\nResult: {num1} / {num2} = {result}")
+
+def ask_to_continue():
+    while True:
+        cont = input("\nDo you want to perform another calculation? (yes/no): ").lower()
+        if cont in ['yes', 'no']:
+            return cont == 'yes'
+        else:
+            print("Please type 'yes' or 'no'.")
+
+# Main program starts here
+def main():
+    display_welcome()
+    
+    while True:
+        # Step 1: Input two numbers
+        number1 = get_number("Enter the first number: ")
+        number2 = get_number("Enter the second number: ")
+
+        # Step 2: Choose operation
+        op = get_operation()
+
+        # Step 3: Perform and display the result
+        perform_calculation(number1, number2, op)
+
+        # Step 4: Ask to continue
+        if not ask_to_continue():
+            print("\nThank you for using the Simple Calculator. Goodbye!")
+            break
+
+# Run the program
+if __name__ == "__main__":
+    main()
